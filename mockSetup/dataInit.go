@@ -1,7 +1,5 @@
 package mocksetup
 
-import "log"
-
 type DataModel struct {
 	IP       string
 	HostName string
@@ -10,6 +8,7 @@ type DataModel struct {
 
 var Data []DataModel
 
+// InitData function is use to initialise example data set
 func InitData() {
 	Data = []DataModel{
 		{
@@ -43,6 +42,11 @@ func InitData() {
 			Active:   false,
 		},
 	}
+}
 
-	log.Println(">>>>>>data from init: ", Data)
+// AddData is an exposed function for new data set
+func AddData(data []DataModel) {
+
+	//Data=append(Data, data...)		//please un-comment this line is you want to append data with existing data
+	Data = data //please comment this line to append the data
 }
