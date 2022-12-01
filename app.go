@@ -7,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	mocksetup "github.com/mta-hosting-optimizer/mockSetup"
+	mocksetup "github.com/verma-a/mta-hosting-optimizer/mockSetup"
 )
 
 func main() {
@@ -26,6 +26,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 
 		tempKey := os.Getenv("tempKey")
+		log.Println("tempkey: ", tempKey)
 		intVal, err := strconv.Atoi(tempKey)
 		if err != nil {
 			log.Println("got error while converting environment variable value: ", err)
@@ -34,6 +35,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		res := mocksetup.GetData(intVal)
+		log.Println("response from get data: ", res)
 
 		bytRes, err := json.Marshal(res)
 		if err != nil {
@@ -48,6 +50,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
+
+		w.WriteHeader(http.StatusOK)
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return

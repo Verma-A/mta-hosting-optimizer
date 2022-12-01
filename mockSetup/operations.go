@@ -1,8 +1,12 @@
 package mocksetup
 
+import "log"
+
 func GetData(value int) []string {
 
 	var result []string
+
+	log.Println(">>>>>>data from get data: ", Data)
 
 	countMap := make(map[string]int)
 	for _, val := range Data {
@@ -13,6 +17,7 @@ func GetData(value int) []string {
 		}
 	}
 
+	log.Println(">>>>>>>count map: ", countMap)
 	for key, val := range countMap {
 		if val <= value {
 			result = append(result, key)

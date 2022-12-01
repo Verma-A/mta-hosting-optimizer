@@ -1,5 +1,7 @@
 package mocksetup
 
+import "log"
+
 type DataModel struct {
 	IP       string
 	HostName string
@@ -41,4 +43,6 @@ func InitData() {
 			Active:   false,
 		},
 	}
+
+	log.Println(">>>>>>data from init: ", Data)
 }
